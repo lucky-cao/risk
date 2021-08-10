@@ -6,7 +6,7 @@ import time
 url = "http://bmfw.www.gov.cn/yqfxdjcx/risk.html"
 
 class Risk:
-    """统计疫情接单项目"""
+    
     def __init__(self):
         self.br = webdriver.Chrome()
         self.br.get(url)
