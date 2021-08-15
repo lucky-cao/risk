@@ -51,7 +51,7 @@ class Risk:
                 # print(md_dc)
                 el = self.br.find_element_by_xpath('//button[8]')
                 el.click()
-                if self.isElement('//button[8]') == False:
+                if not self.isElement('//button[8]'):
                     break
                 time.sleep(3)
         md_json[md_t[0]] = md_dc
