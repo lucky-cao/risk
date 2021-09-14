@@ -19,13 +19,16 @@ class Risk:
         html = etree.HTML(result)
         hd_t = '//div[@class="r-high active"]/text()'
         hd = html.xpath(hd_t)
-        hd_b = '///div [@class="h-header"]/text()'
+        hd_b = '///div [@class="h-header"]'
         hd_d = html.xpath(hd_b)
-        hd_x = '//td[@class="h-td1"]/text()'
-        hd_xx = html.xpath(hd_x)
-        hd_dict = dict(zip(hd_d, hd_xx))
+        # hd_x = '//td[@class="h-td1"]/text()'
+        # hd_xx = html.xpath(hd_x)
+        # hd_dict = dict(zip(hd_d, hd_xx))
+        h_list = []
+        for i in hd_d:
+            h_list.append(i.xpath('string(.)').strip().replace('高风险', '').replace(' ', ''))
         hd_json = dict()
-        hd_json[hd[0]] = hd_dict
+        hd_json[hd[0]] = h_list
         time.sleep(2)
         return hd_json
 
