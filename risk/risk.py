@@ -21,9 +21,7 @@ class Risk:
         hd = html.xpath(hd_t)
         hd_b = '///div [@class="h-header"]'
         hd_d = html.xpath(hd_b)
-        # hd_x = '//td[@class="h-td1"]/text()'
-        # hd_xx = html.xpath(hd_x)
-        # hd_dict = dict(zip(hd_d, hd_xx))
+
         h_list = []
         for i in hd_d:
             h_list.append(i.xpath('string(.)').strip().replace('高风险', '').replace(' ', ''))
@@ -37,26 +35,17 @@ class Risk:
         self.br.find_element_by_css_selector('.r-middle').click()
         time.sleep(6)
         md_json = dict()
-        # md_dc = dict()
         while True:
             result = self.br.page_source
             html = etree.HTML(result)
             md_x = '//div[@class="r-middle active"]/text()'
             global md_t
             md_t = html.xpath(md_x)
-            # print(md_t)
             md_xd = '//div [@class="m-header"]'
             md_d = html.xpath(md_xd)
             m_list = []
             for i in md_d:
                 m_list.append(i.xpath('string(.)').strip().replace('中风险', '').replace(' ', ''))
-            # print(m_list)
-            # md_xtd = '//table [@class="m-table"]'
-            # md_td = html.xpath(md_xtd)[0].xpath('string(.)').strip()
-            # print(md_td)
-            # md_dict = dict(zip(md_d, md_td))
-            # md_dc.update(md_dict)
-            # print(md_dc)
             if self.isElement('//div[@class="pages-box"]/button[@id="nextPage"]'):
                 el = self.br.find_element_by_xpath('//div[@class="pages-box"]/button[@id="nextPage"]')
                 el.click()
